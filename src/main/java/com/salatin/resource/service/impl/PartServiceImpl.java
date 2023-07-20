@@ -14,18 +14,16 @@ public class PartServiceImpl implements PartService {
 
     @Override
     public Mono<Part> findById(Long id) {
-        return Mono.just(partRepository.findById(id).get());
+        return partRepository.findById(id);
     }
 
     @Override
     public Mono<Part> save(Part part) {
-        return Mono.just(partRepository.save(part));
+        return partRepository.save(part);
     }
 
     @Override
     public Mono<Void> deleteById(Long id) {
-        partRepository.deleteById(id);
-
-        return Mono.empty();
+        return partRepository.deleteById(id);
     }
 }
