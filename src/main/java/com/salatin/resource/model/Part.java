@@ -13,6 +13,7 @@ public class Part {
     private String brand;
     private Integer oemNumber;
     private BigDecimal price;
+    private Integer quantity;
     private String supplier;
     private LocalDateTime receivedAt;
 }
