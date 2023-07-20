@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.salatin</groupId>
-	<artifactId>resource</artifactId>
+	<artifactId>resource-service</artifactId>
 	<version>0.0.1</version>
 	<name>resource-service</name>
 	<description>Resource-service for Car Repair Shop App</description>
