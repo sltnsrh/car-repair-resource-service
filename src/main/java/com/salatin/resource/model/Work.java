@@ -2,12 +2,14 @@ package com.salatin.resource.model;
 
 import java.math.BigDecimal;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 @Document(indexName = "works")
 @Data
 public class Work {
-    private Long id;
+    @Id
+    private String id;
     private String name;
     private BigDecimal pricePerHour;
     private String description;
