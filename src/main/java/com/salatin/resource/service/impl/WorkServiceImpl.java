@@ -13,7 +13,7 @@ public class WorkServiceImpl implements WorkService {
     private final WorkRepository workRepository;
 
     @Override
-    public Mono<Work> findById(Long id) {
+    public Mono<Work> findById(String id) {
         return workRepository.findById(id);
     }
 
@@ -23,7 +23,7 @@ public class WorkServiceImpl implements WorkService {
     }
 
     @Override
-    public Mono<Void> deleteById(Long id) {
+    public Mono<Void> deleteById(String id) {
         return workRepository.deleteById(id);
     }
 }

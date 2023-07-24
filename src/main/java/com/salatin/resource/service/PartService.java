@@ -5,9 +5,9 @@ import reactor.core.publisher.Mono;
 
 public interface PartService {
 
-    Mono<Part> findById(Long id);
+    Mono<Part> findById(String id);
 
     Mono<Part> save(Part part);
 
-    Mono<Void> deleteById(Long id);
+    Mono<Void> deleteById(String id);
 }

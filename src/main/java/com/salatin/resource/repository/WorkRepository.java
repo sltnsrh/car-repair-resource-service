@@ -5,5 +5,5 @@ import org.springframework.data.elasticsearch.repository.ReactiveElasticsearchRe
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface WorkRepository extends ReactiveElasticsearchRepository<Work, Long> {
+public interface WorkRepository extends ReactiveElasticsearchRepository<Work, String> {
 }

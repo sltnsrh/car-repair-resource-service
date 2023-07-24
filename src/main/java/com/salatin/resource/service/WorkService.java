@@ -5,9 +5,9 @@ import reactor.core.publisher.Mono;
 
 public interface WorkService {
 
-    Mono<Work> findById(Long id);
+    Mono<Work> findById(String id);
 
     Mono<Work> save(Work work);
 
-    Mono<Void> deleteById(Long id);
+    Mono<Void> deleteById(String id);
 }

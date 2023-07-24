@@ -13,7 +13,7 @@ public class PartServiceImpl implements PartService {
     private final PartRepository partRepository;
 
     @Override
-    public Mono<Part> findById(Long id) {
+    public Mono<Part> findById(String id) {
         return partRepository.findById(id);
     }
 
@@ -23,7 +23,7 @@ public class PartServiceImpl implements PartService {
     }
 
     @Override
-    public Mono<Void> deleteById(Long id) {
+    public Mono<Void> deleteById(String id) {
         return partRepository.deleteById(id);
     }
 }
