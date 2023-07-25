@@ -1,7 +1,7 @@
 package com.salatin.resource.controller;
 
 import com.salatin.resource.model.Part;
-import com.salatin.resource.model.dto.request.PartCreationDto;
+import com.salatin.resource.model.dto.request.PartCreationRequestDto;
 import com.salatin.resource.service.PartService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,14 +19,15 @@ public class PartCreationController {
     private final PartService partService;
 
     @PostMapping
-    public Mono<Part> create(@RequestBody PartCreationDto request) {
+    public Mono<Part> create(@RequestBody PartCreationRequestDto request) {
         var part = new Part();
         part.setName(request.getName());
         part.setBrand(request.getBrand());
         part.setPrice(request.getPrice());
         part.setQuantity(request.getQuantity());
-        part.setOemNumber(request.getOemNumber());
         part.setSupplier(request.getSupplier());
+        request.getOemNumbers()
+                .forEach(oem -> part.getOemNumbers().add(oem));
 
         return partService.save(part);
     }
