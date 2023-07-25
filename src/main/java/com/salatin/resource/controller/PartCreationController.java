@@ -4,6 +4,7 @@ import com.salatin.resource.model.Part;
 import com.salatin.resource.model.dto.request.PartCreationRequestDto;
 import com.salatin.resource.service.PartService;
 import com.salatin.resource.service.mapper.PartMapper;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +24,7 @@ public class PartCreationController {
     private final PartMapper partMapper;
 
     @PostMapping
-    public Mono<Part> create(@RequestBody PartCreationRequestDto requestDto) {
+    public Mono<Part> create(@RequestBody @Valid PartCreationRequestDto requestDto) {
 
         return partService.save(partMapper.toModel(requestDto))
                 .doOnNext(part ->
