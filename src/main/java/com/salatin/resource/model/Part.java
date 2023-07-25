@@ -18,6 +18,7 @@ public class Part {
     private String id;
     private String name;
     private String brand;
+    @Field(type = FieldType.Keyword)
     private String number;
     @Field(type = FieldType.Text)
     private Set<String> oemNumbers = new HashSet<>();
