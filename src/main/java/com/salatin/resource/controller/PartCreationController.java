@@ -5,6 +5,7 @@ import com.salatin.resource.model.dto.request.PartCreationRequestDto;
 import com.salatin.resource.service.PartService;
 import com.salatin.resource.service.mapper.PartMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,7 @@ import reactor.core.publisher.Mono;
 @RestController
 @RequestMapping("/parts")
 @RequiredArgsConstructor
+@Log4j2
 public class PartCreationController {
     private final PartService partService;
     private final PartMapper partMapper;
@@ -23,7 +25,9 @@ public class PartCreationController {
     @PostMapping
     public Mono<Part> create(@RequestBody PartCreationRequestDto requestDto) {
 
-        return partService.save(partMapper.toModel(requestDto));
+        return partService.save(partMapper.toModel(requestDto))
+                .doOnNext(part ->
+                        log.info("Created a new part: " + part));
     }
 
     @GetMapping
