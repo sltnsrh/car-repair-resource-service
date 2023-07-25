@@ -2,6 +2,7 @@ package com.salatin.resource.controller;
 
 import com.salatin.resource.model.Part;
 import com.salatin.resource.model.dto.request.PartCreationRequestDto;
+import com.salatin.resource.model.dto.response.PartResponseDto;
 import com.salatin.resource.service.PartService;
 import com.salatin.resource.service.mapper.PartMapper;
 import jakarta.validation.Valid;
@@ -24,11 +25,11 @@ public class PartCreationController {
     private final PartMapper partMapper;
 
     @PostMapping
-    public Mono<Part> create(@RequestBody @Valid PartCreationRequestDto requestDto) {
+    public Mono<PartResponseDto> create(@RequestBody @Valid PartCreationRequestDto requestDto) {
 
         return partService.save(partMapper.toModel(requestDto))
-                .doOnNext(part ->
-                        log.info("Created a new part: " + part));
+                .doOnNext(part -> log.info("Created a new part: " + part))
+                .map(partMapper::toDto);
     }
 
     @GetMapping
