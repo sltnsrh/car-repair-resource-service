@@ -25,5 +25,5 @@ public class Part {
     private String supplier;
     @LastModifiedDate
     @Field(type = FieldType.Date)
-    private LocalDateTime receivedAt;
+    private LocalDateTime lastUpdatedAt;
 }
