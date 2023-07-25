@@ -26,5 +26,5 @@ public class Part {
     private String supplier;
     @LastModifiedDate
     @Field(type = FieldType.Date)
-    private LocalDateTime lastUpdatedAt;
+    private LocalDateTime lastUpdatedAt = LocalDateTime.now();
 }
