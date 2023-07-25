@@ -13,13 +13,18 @@ public class PartServiceImpl implements PartService {
     private final PartRepository partRepository;
 
     @Override
+    public Mono<Part> save(Part part) {
+        return partRepository.save(part);
+    }
+
+    @Override
     public Mono<Part> findById(String id) {
         return partRepository.findById(id);
     }
 
     @Override
-    public Mono<Part> save(Part part) {
-        return partRepository.save(part);
+    public Mono<Part> findByNumber(String number) {
+        return partRepository.findByNumber(number);
     }
 
     @Override

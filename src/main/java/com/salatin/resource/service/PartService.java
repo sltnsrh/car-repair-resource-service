@@ -9,5 +9,7 @@ public interface PartService {
 
     Mono<Part> save(Part part);
 
+    Mono<Part> findByNumber(String number);
+
     Mono<Void> deleteById(String id);
 }

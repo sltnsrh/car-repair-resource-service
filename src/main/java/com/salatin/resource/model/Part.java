@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.Set;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
@@ -25,7 +24,6 @@ public class Part {
     private BigDecimal price;
     private Integer quantity;
     private String supplier;
-    @LastModifiedDate
     @Field(type = FieldType.Date)
-    private LocalDateTime lastUpdatedAt = LocalDateTime.now();
+    private String lastUpdatedAt = LocalDateTime.now().toString();
 }
