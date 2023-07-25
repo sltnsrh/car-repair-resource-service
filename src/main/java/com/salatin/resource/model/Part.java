@@ -1,5 +1,6 @@
 package com.salatin.resource.model;
 
+import com.salatin.resource.util.ElasticIndex;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -11,7 +12,7 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
-@Document(indexName = "parts")
+@Document(indexName = ElasticIndex.PART)
 @Data
 public class Part {
     @Id
