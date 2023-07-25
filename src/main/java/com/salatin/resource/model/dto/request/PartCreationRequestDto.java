@@ -16,6 +16,7 @@ public class PartCreationRequestDto {
     @NotBlank
     @Size(min = 2, max = 50)
     private String brand;
+    private String number;
     @NotNull
     private List<String> oemNumbers;
     @NotNull

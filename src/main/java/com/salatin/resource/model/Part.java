@@ -19,6 +19,7 @@ public class Part {
     private String id;
     private String name;
     private String brand;
+    private String number;
     @Field(type = FieldType.Text)
     private Set<String> oemNumbers = new HashSet<>();
     private BigDecimal price;

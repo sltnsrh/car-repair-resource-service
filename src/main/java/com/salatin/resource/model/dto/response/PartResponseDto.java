@@ -11,6 +11,7 @@ public class PartResponseDto {
     private String id;
     private String name;
     private String brand;
+    private String number;
     private Set<String> oemNumbers;
     private BigDecimal price;
     private Integer quantity;
