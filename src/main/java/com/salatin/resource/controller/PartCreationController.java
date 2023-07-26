@@ -1,7 +1,7 @@
 package com.salatin.resource.controller;
 
 import com.salatin.resource.model.Part;
-import com.salatin.resource.model.dto.request.PartRequestDto;
+import com.salatin.resource.model.dto.request.PartCreateRequestDto;
 import com.salatin.resource.model.dto.response.PartResponseDto;
 import com.salatin.resource.service.PartCreationService;
 import com.salatin.resource.service.PartService;
@@ -27,7 +27,7 @@ public class PartCreationController {
     private final PartMapper partMapper;
 
     @PostMapping
-    public Mono<PartResponseDto> create(@RequestBody @Valid PartRequestDto requestDto) {
+    public Mono<PartResponseDto> create(@RequestBody @Valid PartCreateRequestDto requestDto) {
 
         return creationService.create(partMapper.toModel(requestDto))
                 .doOnNext(part -> log.info("Created a new part: " + part))
