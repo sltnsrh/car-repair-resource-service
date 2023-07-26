@@ -9,7 +9,7 @@ import java.util.List;
 import lombok.Data;
 
 @Data
-public class PartCreationRequestDto {
+public class PartRequestDto {
     @NotBlank
     @Size(min = 5, max = 150)
     private String name;
