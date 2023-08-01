@@ -1,6 +1,7 @@
 package com.salatin.resource.service;
 
 import com.salatin.resource.model.Part;
+import java.time.LocalDateTime;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -18,9 +19,7 @@ public class PartUpdateService {
         var partId = part.getId();
         var partNumber = part.getNumber();
 
-        Mono<Part> findByIdMono = partService.findById(partId)
-                .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND,
-                            "Can't find a part with id: " + partId)));
+        Mono<Part> findByIdMono = findPartByIdMono(partId);
 
         Mono<Part> findByNumberMono = partService.findByNumber(partNumber)
                 .flatMap(partWithSameNumber -> {
@@ -34,6 +33,26 @@ public class PartUpdateService {
 
         return Mono.zip(findByIdMono, findByNumberMono)
                 .flatMap(tuple -> partService.save(part));
+    }
+
+    public Mono<Void> updateQuantityById(String id, int newQuantity) {
+
+        return findPartByIdMono(id)
+                .flatMap(part -> {
+                    part.setQuantity(newQuantity);
+                    part.setLastUpdatedAt(LocalDateTime.now().toString());
+                    return partService.save(part)
+                            .doOnSuccess(p -> log.info(
+                                    "Successfully set new quantity {} to the part with id {}",
+                                    newQuantity, id))
+                            .then();
+                });
+    }
+
+    private Mono<Part> findPartByIdMono(String id) {
+        return partService.findById(id)
+                .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND,
+                        "Can't find a part with id: " + id)));
     }
 
 }
